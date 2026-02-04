@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/queue_email.php';
+
 if (isset($_POST['submit'])) {
 
     // REPLACE THIS 2 LINES AS YOU DESIRE
@@ -64,7 +66,7 @@ if (isset($_POST['submit'])) {
     $headers = 'From: ' . $email . "\r\n" .
         'Reply-To: ' . $email . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
-    $result = mail($email_to, $email_subject, $email_message, $headers);
+    $result = queue_email($email_to, $email_subject, $email_message, $headers);
 
     //error checking
     if($result) {
